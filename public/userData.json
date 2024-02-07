@@ -1,10 +1,10 @@
 {
   "users": [
     {
-      "user_uuid": 1,
+      "user_uuid": "1",
       "name": "Jane Doe",
       "age": "25",
-      "gender": "Female",
+      "gender": "female",
       "location": "India",
       "interest1": "Cooking",
       "interest2": "Music",
@@ -14,10 +14,10 @@
       "avatarURI": "https://www.w3schools.com/w3images/avatar6.png"
     },
     {
-      "user_uuid": 2,
+      "user_uuid": "2",
       "name": "John Doe",
       "age": "29",
-      "gender": "Male",
+      "gender": "male",
       "location": "India",
       "interest1": "Cricket",
       "interest2": "Tennis",
@@ -27,10 +27,10 @@
       "avatarURI": "https://www.w3schools.com/w3images/avatar2.png"
     },
     {
-      "user_uuid": 3,
+      "user_uuid": "3",
       "name": "Steve Dalh",
       "age": "25",
-      "gender": "Male",
+      "gender": "male",
       "location": "US",
       "interest1": "Coding",
       "interest2": "Dance",

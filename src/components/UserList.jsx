@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const initialState = localStorage.getItem("users")
   ? JSON.parse(localStorage.getItem("users"))
@@ -24,12 +24,13 @@ const UserList = () => {
 
   return (
     <>
+      <NavLink to="/users/new">Create New User</NavLink>
       <h1>Users List</h1>
       {users.map((user) => (
         <div
-          key={user.id}
+          key={user.user_uuid}
           className="user-card"
-          onClick={() => navigate(`/users/${user.id}`)}
+          onClick={() => navigate(`/users/${user.user_uuid}`)}
         >
           <h3>{user.name}</h3>
           <p>{user.email}</p>
