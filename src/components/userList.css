@@ -1,6 +1,6 @@
 .user-list{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
 }
 .user-card {
     border: 1px solid #ccc;
@@ -8,8 +8,13 @@
     padding: 10px;
     margin: 10px;
     width: 300px;
+    cursor: pointer;
+    box-shadow: 4px 4px 8px 0 rgba(255, 255, 255, 0.2);
   }
   
+  .user-card:hover{
+    box-shadow: 4px -4px 8px 0 rgba(255, 255, 255, 0.2);
+  }
   .user-card h2 {
     font-size: 1.5rem;
     margin-bottom: 5px;

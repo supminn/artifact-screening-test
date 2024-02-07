@@ -26,3 +26,9 @@
 .button:hover{
     background-color: white;
 }
+
+input{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: unset
+}

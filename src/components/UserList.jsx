@@ -20,17 +20,15 @@ const UserList = () => {
             <h2>
               {user.name} ({user.display_name})
             </h2>
-            <p>
-              Age: {user.age} | Gender: {user.gender} | Location:{" "}
-              {user.location}
-            </p>
+            <img src={user.avatarURI} alt="User Avatar" />
+            <p>Age: {user.age}</p>
+            <p>Gender: {user.gender} </p>
+            <p>Location: {user.location}</p>
             <p>
               Interests: {user.interest1}, {user.interest2}
             </p>
-            <p>
-              Email: {user.email} | Username: {user.username}
-            </p>
-            <img src={user.avatarURI} alt="User Avatar" />
+            <p>Email: {user.email}</p>
+            <p> Username: {user.username}</p>
           </div>
         ))}
       </div>
