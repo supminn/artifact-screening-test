@@ -16,6 +16,7 @@ export const initialState = {
 
 export const reducer = (state = initialState, action) => {
   const { type, payload } = action;
+  console.log("Turbo 🚀 ~ reducer ~  { type, payload }:", { type, payload });
   switch (type) {
     case ActionTypes.SET_CURRENT_USER_DETAILS: {
       return { ...state, ...payload };

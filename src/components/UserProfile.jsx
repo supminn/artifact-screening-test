@@ -7,18 +7,20 @@ import { v4 as uuidv4 } from "uuid";
 import { updateUsersData } from "../utils";
 import { useUserData } from "../context/UserDataProvider";
 import "./userProfile.css";
+import { bearerToken, sampleAPIResponse, url } from "../utils/constants";
 
 const UserProfile = () => {
   const { userId } = useParams();
   const { users, setUsers } = useUserData();
   const [state, dispatch] = useReducer(reducer, initialState);
   const [toastMsg, setToastMsg] = useState("");
-
+  console.log("state", state);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ values: state });
+
   const onSubmit = (payload) => {
     if (userId === "new") {
       payload.user_uuid = uuidv4();
@@ -31,6 +33,7 @@ const UserProfile = () => {
     setTimeout(() => setToastMsg(""), 2000);
   };
 
+  // auto-fill user data if the user already exists. They can edit and update their details
   useEffect(() => {
     if (userId !== "new") {
       const currentUser = users.find((user) => user.user_uuid === userId);
@@ -39,8 +42,9 @@ const UserProfile = () => {
         payload: currentUser,
       });
     }
-  }, [userId, users]);
+  }, [userId]);
 
+  // auto-populate the user's location based on geoLocation API
   useEffect(() => {
     if (!state.location) {
       (async () => {
@@ -57,6 +61,40 @@ const UserProfile = () => {
       })();
     }
   }, []);
+
+  // fetch the Email, Username, Display name, and Avatar URI details for the user
+  const populateUserInformation = async () => {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${bearerToken}`,
+        },
+      });
+      const responseData = await response.json();
+      console.log("Turbo 🚀 ~ responseData:", responseData);
+
+      console.log("smaple", sampleAPIResponse);
+      // this will update the necessary fields for this user - replace 'sampleAPIResponse' with 'responseData'
+      dispatch({
+        type: ActionTypes.SET_CURRENT_USER_DETAILS,
+        payload: sampleAPIResponse.profile,
+      });
+
+      //alternatively, we could explicitly update just the email, username, display name and AvatarURI by passing just them as payload
+      // dispatch({
+      //   type: ActionTypes.SET_CURRENT_USER_DETAILS,
+      //   payload: {
+      //     display_name: sampleAPIResponse.display_name,
+      //     username: sampleAPIResponse.username,
+      //     email: sampleAPIResponse.email,
+      //     avatar_uri: sampleAPIResponse.avatar_uri,
+      //   },
+      // });
+    } catch (error) {
+      console.error("Error in fetching user data from API");
+    }
+  };
 
   return (
     <>
@@ -177,6 +215,10 @@ const UserProfile = () => {
         />
       </form>
       {toastMsg && <div>{toastMsg}</div>}
+      <hr />
+      <button className="sec-button" onClick={populateUserInformation}>
+        Populate User Data
+      </button>
     </>
   );
 };

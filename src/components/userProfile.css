@@ -13,7 +13,7 @@
     text-align: initial;
 }
 
-.button{
+.button, .sec-button{
     padding: 0.5rem;
     border-radius: 1rem;
     width: 100%;
@@ -23,6 +23,11 @@
     font-weight: bold;
 }
 
+.sec-button{
+    border: 1px solid white;
+    background-color: inherit;
+    color: white;
+}
 .button:hover{
     background-color: white;
 }
