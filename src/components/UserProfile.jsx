@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { updateUsersData } from "../utils";
 import { useUserData } from "../context/UserDataProvider";
+import "./userProfile.css";
 
 const UserProfile = () => {
   const { userId } = useParams();
@@ -62,70 +63,118 @@ const UserProfile = () => {
       <NavLink to="/users">Show All Users</NavLink>
       <h2>User Profile</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="user-form">
-        <label>Name:</label>
+        <div className="form-section">
+          <div className="input-section">
+            <label>Name:</label>
+            <input
+              {...register("name", { required: "Name is a required field" })}
+            />
+          </div>
+          {errors?.name?.message && (
+            <small className="error-msg">{errors?.name?.message}</small>
+          )}
+        </div>
+        <div className="form-section">
+          <div className="input-section">
+            <label>Age:</label>
+            <input
+              {...register("age", { required: "Age is a required field" })}
+            />
+          </div>
+          {errors?.age?.message && (
+            <small className="error-msg">{errors?.age?.message}</small>
+          )}
+        </div>
+        <div className="form-section">
+          <div className="input-section">
+            <label>Gender:</label>
+            <select
+              {...register("gender", {
+                required: "Gender is a required field",
+              })}
+            >
+              <option value="female">female</option>
+              <option value="male">male</option>
+              <option value="other">other</option>
+            </select>
+          </div>
+          {errors?.gender?.message && (
+            <small className="error-msg">{errors?.gender?.message}</small>
+          )}
+        </div>
+        <div className="form-section">
+          <div className="input-section">
+            <label>Location:</label>
+            <input
+              {...register("location", {
+                required: "Location is a required field",
+              })}
+            />
+          </div>
+          {errors?.location?.message && (
+            <small className="error-msg">{errors?.location?.message}</small>
+          )}
+        </div>
+        <div className="form-section">
+          <div className="input-section">
+            <label>interest1</label>
+            <input {...register("interest1")} />
+          </div>
+        </div>
+        <div className="form-section">
+          <div className="input-section">
+            <label>Interest2:</label>
+            <input {...register("interest2")} />
+          </div>
+        </div>
+        <div className="form-section">
+          <div className="input-section">
+            {" "}
+            <label>Email:</label>
+            <input
+              {...register("email", { required: "Email is a required field" })}
+            />
+          </div>
+          {errors?.email?.message && (
+            <small className="error-msg">{errors.email.message}</small>
+          )}
+        </div>
+        <div className="form-section">
+          <div className="input-section">
+            {" "}
+            <label>Username:</label>
+            <input
+              {...register("username", {
+                required: "Username is a required field",
+              })}
+            />
+          </div>
+          {errors?.userName?.message && (
+            <small className="error-msg">{errors.userName.message}</small>
+          )}
+        </div>
+        <div className="form-section">
+          <div className="input-section">
+            <label>Display Name:</label>
+            <input
+              {...register("display_name", {
+                required: "Display Name is a required field",
+              })}
+            />
+          </div>
+          {errors?.display_name?.message && (
+            <small className="error-msg">{errors.display_name.message}</small>
+          )}
+        </div>
+        <div className="input-section">
+          <label>Avatar URI:</label>
+          <input {...register("avatarURI")} />
+        </div>
         <input
-          {...register("name", { required: "Name is a required field" })}
+          className="button"
+          type="submit"
+          value={userId === "new" ? "Save" : "Update"}
         />
-        {errors?.name?.message && (
-          <small className="error-msg">{errors?.name?.message}</small>
-        )}
-        <label>Age:</label>
-        <input {...register("age", { required: "Age is a required field" })} />
-        {errors?.age?.message && (
-          <small className="error-msg">{errors?.age?.message}</small>
-        )}
-        <label>Gender:</label>
-        <select
-          {...register("gender", { required: "Gender is a required field" })}
-        >
-          <option value="female">female</option>
-          <option value="male">male</option>
-          <option value="other">other</option>
-        </select>
-        {errors?.gender?.message && (
-          <small className="error-msg">{errors?.gender?.message}</small>
-        )}
-        <label>Location:</label>
-        <input
-          {...register("location", {
-            required: "Location is a required field",
-          })}
-        />
-        {errors?.location?.message && (
-          <small className="error-msg">{errors?.location?.message}</small>
-        )}
-        <label>interest1</label>
-        <input {...register("interest1")} />
-        <label>Interest2:</label>
-        <input {...register("interest2")} />
-        <label>Email:</label>
-        <input
-          {...register("email", { required: "Email is a required field" })}
-        />
-        {errors?.email?.message && (
-          <small className="error-msg">{errors.email.message}</small>
-        )}
-        <label>Username:</label>
-        <input
-          {...register("username", {
-            required: "Username is a required field",
-          })}
-        />
-        {errors?.userName?.message && (
-          <small className="error-msg">{errors.userName.message}</small>
-        )}
-        <label>Display Name:</label>
-        <input
-          {...register("displayName", {
-            required: "Display Name is a required field",
-          })}
-        />
-        {errors?.displayName?.message && (
-          <small className="error-msg">{errors.displayName.message}</small>
-        )}
-        <label>Avatar URI:</label>
-        <input {...register("avatarURI")} />
-        <input type="submit" value={userId === "new" ? "Save" : "Update"} />
       </form>
       {toastMsg && <div>{toastMsg}</div>}
     </>

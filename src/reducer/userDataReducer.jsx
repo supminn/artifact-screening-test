@@ -10,7 +10,7 @@ export const initialState = {
   interest2: "",
   email: "",
   username: "",
-  displayName: "",
+  display_name: "",
   avatarURI: "",
 };
 
@@ -39,7 +39,7 @@ export const reducer = (state = initialState, action) => {
     //   return { ...state, username: payload.username };
     // }
     // case ActionTypes.SET_USER_DISPLAY_NAME: {
-    //   return { ...state, displayName: payload.displayName };
+    //   return { ...state, display_name: payload.display_name };
     // }
     // case ActionTypes.SET_USER_AVATAR_URI: {
     //   return { ...state, avatarURI: payload.avatarURI };

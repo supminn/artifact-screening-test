@@ -1,0 +1,28 @@
+.input-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.error-msg {
+    color: red;
+}
+
+.user-form{
+    text-align: initial;
+}
+
+.button{
+    padding: 0.5rem;
+    border-radius: 1rem;
+    width: 100%;
+    background-color: aliceblue;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.button:hover{
+    background-color: white;
+}

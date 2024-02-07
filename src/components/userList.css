@@ -1,0 +1,26 @@
+.user-list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.user-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+  }
+  
+  .user-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+  }
+  
+  .user-card p {
+    margin: 5px 0;
+  }
+  
+  .user-card img {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
