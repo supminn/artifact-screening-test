@@ -1,45 +1,43 @@
 {
   "users": [
     {
-      "Name": "Jane Doe",
-      "Age": "25",
-      "Gender": "Female",
-      "Location": "India",
-      "Interest 1": "Cooking",
-      "Interest 2": "Music",
-      "Email": "jane.doe@gmail.com",
-      "Username": "janed",
-      "Display name": "Jane",
-      "Avatar URI": "https://www.w3schools.com/w3images/avatar6.png"
+      "user_uuid": 1,
+      "name": "Jane Doe",
+      "age": "25",
+      "gender": "Female",
+      "location": "India",
+      "interest1": "Cooking",
+      "interest2": "Music",
+      "email": "jane.doe@gmail.com",
+      "username": "janed",
+      "display_name": "Jane",
+      "avatarURI": "https://www.w3schools.com/w3images/avatar6.png"
     },
     {
-      "Name": "John Doe",
-      "Age": "29",
-      "Gender": "Male",
-      "Location": "India",
-      "Interest 1": "Cricket",
-      "Interest 2": "Tennis",
-      "Email": "John.doe@gmail.com",
-      "Username": "Johnd",
-      "Display name": "John",
-      "Avatar URI": "https://www.w3schools.com/w3images/avatar2.png"
+      "user_uuid": 2,
+      "name": "John Doe",
+      "age": "29",
+      "gender": "Male",
+      "location": "India",
+      "interest1": "Cricket",
+      "interest2": "Tennis",
+      "email": "John.doe@gmail.com",
+      "username": "Johnd",
+      "display_name": "John",
+      "avatarURI": "https://www.w3schools.com/w3images/avatar2.png"
     },
     {
-      "Name": "Jane Doe",
-      "Age": "25",
-      "Gender": "Female",
-      "Location": {
-        "country": "India",
-        "city": "Bengaluru"
-      },
-      "Interests": {
-        "Interest 1": "Cooking",
-        "Interest 2": "Music"
-      },
-      "Email": "jane.doe@gmail.com",
-      "Username": "janed",
-      "Display name": "Jane",
-      "Avatar URI": "https://www.w3schools.com/w3images/avatar6.png"
+      "user_uuid": 3,
+      "name": "Steve Dalh",
+      "age": "25",
+      "gender": "Male",
+      "location": "US",
+      "interest1": "Coding",
+      "interest2": "Dance",
+      "email": "Steve.dalh@gmail.com",
+      "username": "Steved",
+      "display_name": "Steve",
+      "avatarURI": "https://www.w3schools.com/w3images/avatar6.png"
     }
   ]
 }

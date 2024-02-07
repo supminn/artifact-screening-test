@@ -1,33 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
+import { useParams } from "react-router-dom";
+import { initialState, reducer } from "../reducer/userDataReducer";
+import { ActionTypes } from "../reducer/actionTypes";
 
 const UserProfile = () => {
-  const [userLocation, setUserLocation] = useState({
-    country: "",
-    city: "",
-  });
-  // TODO: convert to useReducer for storing all the necessary user data
+  const { userId } = useParams();
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    if (!userLocation.country) {
+    if (userId !== "new") {
+      const userList = JSON.parse(localStorage.getItem("users"));
+      const currentUser = userList.find((user) => user.id === userId);
+      dispatch({
+        type: ActionTypes.SET_CURRENT_USER_DETAILS,
+        payload: currentUser,
+      });
+    }
+  });
+  useEffect(() => {
+    if (!state.location) {
       (async () => {
-        console.log("API reqeust");
         let response = await fetch(
           `https://ipgeolocation.abstractapi.com/v1/?api_key=${
             import.meta.env.VITE_LOCATION_API_KEY
           }`
         );
         response = await response.json();
-        console.log("Turbo 🚀 ~ response:", response);
-        setUserLocation({ country: response.country, city: response.city });
+        dispatch({
+          type: ActionTypes.SET_USER_LOCATION,
+          payload: { country: response.country },
+        });
       })();
     }
   }, []);
 
-  return (
-    <div>
-      UserProfile: {userLocation.country} - {userLocation.city}
-    </div>
-  );
+  return <div>UserProfile: {state.location}</div>;
 };
 
-export default UserProfile;
+export { UserProfile };
