@@ -1,26 +1,9 @@
-import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-
-const initialState = localStorage.getItem("users")
-  ? JSON.parse(localStorage.getItem("users"))
-  : [];
+import { useUserData } from "../context/UserDataProvider";
 
 const UserList = () => {
-  const [users, setUsers] = useState(initialState);
+  const { users } = useUserData();
   const navigate = useNavigate();
-  useEffect(() => {
-    if (users.length === 0) {
-      (async () => {
-        let response = await fetch("/userData.json");
-        response = await response.json();
-        const userList = response.users;
-        if (userList.length > 0) {
-          setUsers();
-          localStorage.setItem("users", JSON.stringify(userList));
-        }
-      })();
-    }
-  }, [users]);
 
   return (
     <>

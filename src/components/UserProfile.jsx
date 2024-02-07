@@ -4,10 +4,12 @@ import { initialState, reducer } from "../reducer/userDataReducer";
 import { ActionTypes } from "../reducer/actionTypes";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
-import { updateLocalStorage } from "../utils";
+import { updateUsersData } from "../utils";
+import { useUserData } from "../context/UserDataProvider";
 
 const UserProfile = () => {
   const { userId } = useParams();
+  const { users, setUsers } = useUserData();
   const [state, dispatch] = useReducer(reducer, initialState);
   const [toastMsg, setToastMsg] = useState("");
 
@@ -21,7 +23,7 @@ const UserProfile = () => {
       payload.user_uuid = uuidv4();
     }
     dispatch({ type: ActionTypes.SET_CURRENT_USER_DETAILS, payload });
-    updateLocalStorage(payload);
+    updateUsersData({ payload, users, setUsers });
     // simple toast message
     setToastMsg("Data has been updated successfully");
     // auto-hide toast message
@@ -30,14 +32,13 @@ const UserProfile = () => {
 
   useEffect(() => {
     if (userId !== "new") {
-      const userList = JSON.parse(localStorage.getItem("users"));
-      const currentUser = userList.find((user) => user.user_uuid === userId);
+      const currentUser = users.find((user) => user.user_uuid === userId);
       dispatch({
         type: ActionTypes.SET_CURRENT_USER_DETAILS,
         payload: currentUser,
       });
     }
-  }, [userId]);
+  }, [userId, users]);
 
   useEffect(() => {
     if (!state.location) {

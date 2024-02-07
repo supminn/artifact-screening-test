@@ -1,15 +1,16 @@
-export const updateLocalStorage = (data) => {
-  const userList = JSON.parse(localStorage.getItem("users"));
-  const existingUser = userList.find(
-    (user) => user.user_uuid === data.user_uuid
+export const updateUsersData = ({ payload, users, setUsers }) => {
+  const existingUser = users.find(
+    (user) => user.user_uuid === payload.user_uuid
   );
   if (existingUser) {
-    const updatedList = userList.map((user) =>
-      user.user_uuid === data.user_uuid ? { ...data } : { ...user }
+    const updatedList = users.map((user) =>
+      user.user_uuid === payload.user_uuid ? { ...payload } : { ...user }
     );
+    setUsers(updatedList);
     localStorage.setItem("users", JSON.stringify(updatedList));
   } else {
-    const appendedList = [...userList, { ...data }];
+    const appendedList = [...users, { ...payload }];
+    setUsers(appendedList);
     localStorage.setItem("users", JSON.stringify(appendedList));
   }
 };
